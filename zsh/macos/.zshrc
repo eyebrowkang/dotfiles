@@ -1,0 +1,97 @@
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="pi"
+
+# plugin config
+plugins=(
+  git
+  docker
+  docker-compose
+  autojump
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+source $ZSH/oh-my-zsh.sh
+# == user config ==
+unsetopt autocd
+
+export EDITOR='vim'
+if command -v bat >/dev/null 2>&1; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
+# alias config
+alias ea="exa -laHT -I .git --icons"
+alias n="nvim"
+alias ws="webstorm"
+alias fork="open -a Fork.app"
+alias typora="open -a typora"
+
+# zsh completion
+if command -v colima >/dev/null 2>&1; then
+  source <(colima completion zsh)
+fi
+if command -v ng >/dev/null 2>&1; then
+  source <(ng completion script)
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# fzf config
+# export FZF_COMPLETION_TRIGGER='**'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+export FZF_DEFAULT_OPTS="
+  --preview 'bat {}'
+  --bind 'ctrl-/:change-preview-window(hidden|),ctrl-y:preview-half-page-up,ctrl-e:preview-half-page-down,ctrl-f:page-down,ctrl-b:page-up'
+  --layout=reverse
+  --height 80% --border
+  "
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
+# bindkey '^T' fzf-completion
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

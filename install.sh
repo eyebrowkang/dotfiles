@@ -2,7 +2,7 @@
 
 command_exists() {
   # 检查命令是否存在
-  if type "$1" >/dev/null 2>&1; then
+  if command -v "$1" >/dev/null 2>&1; then
     return 0  # 如果命令存在，返回0（在 Bash 中，0表示真）
   else
     echo -e "\033[31m$1 not installed!\033[0m"  # 如果命令不存在，打印错误信息
@@ -10,7 +10,7 @@ command_exists() {
   fi
 }
 
-src_exists() {
+dir_exists() {
   if [ -d "$1" ]; then
     return 0
   else
@@ -19,9 +19,9 @@ src_exists() {
   fi
 }
 
-dst_not_exists() {
+dir_not_exists() {
   if [ -d "$1" ]; then
-    echo -e "\033[31m$1 exists, please backup or delete it!\033[0m"
+    echo -e "\033[31m$1 already exists, please backup or delete it!\033[0m"
     return 1
   else
     mkdir -p "$1"
@@ -29,8 +29,26 @@ dst_not_exists() {
   fi
 }
 
+file_exists() {
+  if [ -f "$1" ]; then
+    return 0
+  else
+    echo -e "\033[31m$1 not exists, please backup or delete it!\033[0m"
+    return 1
+  fi
+}
+
+file_not_exists() {
+  if [ -f "$1" ]; then
+    echo -e "\033[31m$1 already exists, please backup or delete it!\033[0m"
+    return 1
+  else
+    return 0
+  fi
+}
+
 link_folder() {
-  if src_exists "$1" && dst_not_exists "$2"; then
+  if dir_exists "$1" && dir_not_exists "$2"; then
     # 逐个遍历源目录中的文件，并为每个文件创建硬链接
     for src_file in "$1"/*; do
       if [ -f "$src_file" ]; then
@@ -39,6 +57,13 @@ link_folder() {
     done
 
     echo "$1 all files linked to $2"
+  fi
+}
+
+link_file() {
+  if file_exists "$1" && file_not_exists "$2"; then
+    ln "$1" "$2"
+    echo "$1 linked to $2"
   fi
 }
 
@@ -55,6 +80,10 @@ macosx_install() {
   # alacritty
   if command_exists alacritty; then
     link_folder "./alacritty/macos" "$HOME/.config/alacritty"
+  fi
+  # zsh
+  if command_exists zsh; then
+    link_file "./zsh/macos/.zshrc" "$HOME/.zshrc"
   fi
 }
 
