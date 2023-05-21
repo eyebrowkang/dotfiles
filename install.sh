@@ -24,7 +24,6 @@ dir_not_exists() {
     echo -e "\033[31m$1 already exists, please backup or delete it!\033[0m"
     return 1
   else
-    mkdir -p "$1"
     return 0
   fi
 }
@@ -49,20 +48,14 @@ file_not_exists() {
 
 link_folder() {
   if dir_exists "$1" && dir_not_exists "$2"; then
-    # 逐个遍历源目录中的文件，并为每个文件创建硬链接
-    for src_file in "$1"/*; do
-      if [ -f "$src_file" ]; then
-        ln "$src_file" "$2"
-      fi
-    done
-
-    echo "$1 all files linked to $2"
+    ln -s "$1" "$(dirname "$2")"
+    echo "$1 linked to "$(dirname $2)""
   fi
 }
 
 link_file() {
   if file_exists "$1" && file_not_exists "$2"; then
-    ln "$1" "$2"
+    ln -s "$1" "$2"
     echo "$1 linked to $2"
   fi
 }
@@ -71,7 +64,7 @@ linux_install() {
   echo -e "\033[34mInstalling Linux config...\033[0m"
   # alacritty
   if command_exists alacritty; then
-    link_folder "./alacritty/linux" "$HOME/.config/alacritty"
+    link_folder ""$(pwd)"/linux/alacritty" "$HOME/.config/alacritty"
   fi
 }
 
@@ -79,11 +72,11 @@ macosx_install() {
   echo -e "\033[34mInstalling macOS config...\033[0m"
   # alacritty
   if command_exists alacritty; then
-    link_folder "./alacritty/macos" "$HOME/.config/alacritty"
+    link_folder ""$(pwd)"/macos/alacritty" "$HOME/.config/alacritty"
   fi
   # zsh
   if command_exists zsh; then
-    link_file "./zsh/macos/.zshrc" "$HOME/.zshrc"
+    link_file ""$(pwd)"/macos/zshrc" "$HOME/.zshrc"
   fi
 }
 
@@ -91,15 +84,19 @@ common_install() {
   echo -e "\033[34mInstalling common config...\033[0m"
   # tmux
   if command_exists tmux; then
-    link_folder "./tmux" "$HOME/.config/tmux"
+    link_folder ""$(pwd)"/tmux" "$HOME/.config/tmux"
   fi
   # lazygit
   if command_exists lazygit; then
-    link_folder "./lazygit" "$(lazygit --print-config-dir)"
+    link_folder ""$(pwd)"/lazygit" "$(lazygit --print-config-dir)"
   fi
   # bat
   if command_exists bat; then
-    link_folder "./bat" "$HOME/.config/bat"
+    link_folder ""$(pwd)"/bat" "$HOME/.config/bat"
+  fi
+  # kitty
+  if command_exists kitty; then
+    link_folder ""$(pwd)"/kitty" "$HOME/.config/kitty"
   fi
 }
 
