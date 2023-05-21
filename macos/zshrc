@@ -16,19 +16,22 @@ source $ZSH/oh-my-zsh.sh
 # == user config ==
 unsetopt autocd
 
+# enviroment variable
 export EDITOR='vim'
 if command -v bat >/dev/null 2>&1; then
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
+export GPG_TTY=$(tty)
 
 # alias config
 alias ea="exa -laHT -I .git --icons"
 alias n="nvim"
 alias ws="webstorm"
+alias lg="lazygit"
 alias fork="open -a Fork.app"
 alias typora="open -a typora"
 
-# zsh completion
+# completion
 if command -v colima >/dev/null 2>&1; then
   source <(colima completion zsh)
 fi
@@ -95,3 +98,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+eval "$(github-copilot-cli alias -- "$0")"
