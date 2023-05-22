@@ -21,7 +21,7 @@ dir_exists() {
 
 dir_not_exists() {
   if [ -d "$1" ]; then
-    echo -e "\033[31m$1 already exists, please backup or delete it!\033[0m"
+    echo -e "\033[33m$1 already exists, please backup or delete it!\033[0m"
     return 1
   else
     return 0
@@ -32,14 +32,14 @@ file_exists() {
   if [ -f "$1" ]; then
     return 0
   else
-    echo -e "\033[31m$1 not exists, please backup or delete it!\033[0m"
+    echo -e "\033[41m$1 not exists, something was wrong!\033[0m"
     return 1
   fi
 }
 
 file_not_exists() {
   if [ -f "$1" ]; then
-    echo -e "\033[31m$1 already exists, please backup or delete it!\033[0m"
+    echo -e "\033[33m$1 already exists, please backup or delete it!\033[0m"
     return 1
   else
     return 0
@@ -116,3 +116,4 @@ case "$os" in
     ;;
 esac
 
+echo -e "\033[34mConfig OK!\033[0m"
