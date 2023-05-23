@@ -6,12 +6,12 @@ unsetopt autocd
 
 # == omz plugins ==
 plugins=(
-  git
-  docker
-  docker-compose
-  autojump
-  zsh-syntax-highlighting
-  zsh-autosuggestions
+    git
+    docker
+    docker-compose
+    autojump
+    zsh-syntax-highlighting
+    zsh-autosuggestions
 )
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
@@ -47,28 +47,29 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # == enviroment variable ==
-export EDITOR='nvim'
+export EDITOR='vim'
 export GPG_TTY=$(tty)
 if command -v bat >/dev/null 2>&1; then
-  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 # = fzf =
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 export FZF_DEFAULT_OPTS="
-  --layout=reverse
-  --height 80%
-  --border
-  --preview 'bat {}'
-  --bind 'ctrl-/:change-preview-window(hidden|),ctrl-y:preview-half-page-up,ctrl-e:preview-half-page-down,ctrl-f:page-down,ctrl-b:page-up'
-  "
+--layout=reverse
+--height 80%
+--border
+--preview 'bat {}'
+--bind 'ctrl-/:change-preview-window(hidden|),ctrl-y:preview-half-page-up,ctrl-e:preview-half-page-down,ctrl-f:page-down,ctrl-b:page-up'
+"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
 
 # == alias ==
 alias ea="exa -laHT -I .git --icons"
-alias n="nvim"
+alias vim="nvim"
 alias lg="lazygit"
-alias gnpm="/usr/local/bin/pnpm"
+alias fm="joshuto"
+alias gnpm="$HOMEBREW_PREFIX/bin/pnpm"
 alias fork="open -a Fork.app"
 alias typora="open -a typora"
 alias ws="webstorm"
