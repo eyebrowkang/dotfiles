@@ -13,6 +13,7 @@ keymap = [
   { keys = ["Q"], command = "quit" },
 
   { keys = ["t", "r"], command = "reload_dirlist" },
+  { keys = ["ctrl+l"], command = "reload_dirlist" },
   { keys = ["z", "h"], command = "toggle_hidden" },
   { keys = ["."], command = "toggle_hidden" },
   # { keys = ["ctrl+h"], command = "toggle_hidden" },
@@ -51,8 +52,10 @@ keymap = [
   { keys = ["end"], command = "cursor_move_end" },
   { keys = ["page_up"], command = "cursor_move_page_up" },
   { keys = ["page_down"], command = "cursor_move_page_down" },
-  { keys = ["ctrl+u"], command = "cursor_move_page_up 0.5" },
-  { keys = ["ctrl+d"], command = "cursor_move_page_down 0.5" },
+  { keys = ["ctrl+u"], command = "cursor_move_page_up 0.3" },
+  { keys = ["ctrl+d"], command = "cursor_move_page_down 0.3" },
+  { keys = ["ctrl+b"], command = "cursor_move_page_up" },
+  { keys = ["ctrl+f"], command = "cursor_move_page_down" },
 
   # vim-like keybindings
   { keys = ["e"], command = "cursor_move_down" },
@@ -62,56 +65,62 @@ keymap = [
   { keys = ["g", "g"], command = "cursor_move_home" },
   { keys = ["G"], command = "cursor_move_end" },
   { keys = ["o"], command = "open_with" },
+  { keys = ["E"], command = "cursor_move_down 5" },
+  { keys = ["U"], command = "cursor_move_up 5" },
 
-  { keys = ["N"], command = "cursor_move_page_home" },
-  { keys = ["M"], command = "cursor_move_page_middle" },
-  { keys = ["L"], command = "cursor_move_page_end" },
+  # { keys = ["N"], command = "cursor_move_page_home" },
+  # { keys = ["M"], command = "cursor_move_page_middle" },
+  # { keys = ["L"], command = "cursor_move_page_end" },
 
   { keys = ["["], command = "parent_cursor_move_up" },
   { keys = ["]"], command = "parent_cursor_move_down" },
 
-  { keys = ["c", "d"], command = ":cd " },
-  { keys = ["d", "d"], command = "cut_files" },
+  { keys = ["ctrl+y"], command = "preview_cursor_move_up 5" },
+  { keys = ["ctrl+e"], command = "preview_cursor_move_down 5" },
+
+  # { keys = ["c", "d"], command = ":cd " },
+  { keys = ["d"], command = "cut_files" },
+
   { keys = ["y", "y"], command = "copy_files" },
   { keys = ["y", "n"], command = "copy_filename" },
   { keys = ["y", "."], command = "copy_filename_without_extension" },
   { keys = ["y", "p"], command = "copy_filepath" },
   { keys = ["y", "d"], command = "copy_dirpath" },
 
-  { keys = ["p", "l"], command = "symlink_files --relative=false" },
-  { keys = ["p", "L"], command = "symlink_files --relative=true" },
+  { keys = ["L"], command = "symlink_files --relative=false" },
+  { keys = ["l"], command = "symlink_files --relative=true" },
 
   { keys = ["delete"], command = "delete_files" },
-  { keys = ["d", "D"], command = "delete_files" },
+  { keys = ["D"], command = "delete_files" },
 
-  { keys = ["p", "p"], command = "paste_files" },
-  { keys = ["p", "o"], command = "paste_files --overwrite=true" },
+  { keys = ["P"], command = "paste_files" },
+  # { keys = ["p", "o"], command = "paste_files --overwrite=true" },
 
-  { keys = ["a"], command = "rename_append" },
-  { keys = ["A"], command = "rename_prepend" },
+  { keys = ["r", "n"], command = ":rename " },
+  { keys = ["r", "e"], command = "rename_append" },
+  { keys = ["r", "a"], command = "rename_prepend" },
+  { keys = ["R"], command = "bulk_rename" },
 
-  { keys = ["f", "t"], command = ":touch " },
+  { keys = ["a"], command = ":mkdir " },
+  { keys = ["N"], command = ":touch " },
 
   { keys = [" "], command = "select --toggle=true" },
   { keys = ["v"], command = "select --all=true --toggle=true" },
   { keys = ["V"], command = "toggle_visual" },
 
   { keys = ["w"], command = "show_tasks --exit-key=w" },
-  { keys = ["b", "b"], command = "bulk_rename" },
   { keys = ["="], command = "set_mode" },
 
   { keys = [":"], command = ":" },
-  { keys = [";"], command = ":" },
+  { keys = [";"], command = ":shell" },
 
-  { keys = ["'"], command = ":shell " },
-  { keys = ["m", "d"], command = ":mkdir " },
-  { keys = ["c", "w"], command = ":rename " },
+  # { keys = ["'"], command = ":shell " },
 
   { keys = ["/"], command = ":search " },
   { keys = ["|"], command = ":search_inc " },
   { keys = ["\\"], command = ":search_glob " },
-  { keys = ["S"], command = "search_fzf" },
-  { keys = ["C"], command = "subdir_fzf" },
+  { keys = ["f", "s"], command = "search_fzf" },
+  { keys = ["f", "f"], command = "subdir_fzf" },
 
   { keys = ["h"], command = "search_next" },
   { keys = ["H"], command = "search_prev" },
@@ -125,7 +134,10 @@ keymap = [
 
   { keys = ["m", "s"], command = "linemode size" },
   { keys = ["m", "m"], command = "linemode mtime" },
-  { keys = ["m", "M"], command = "linemode sizemtime" },
+  { keys = ["m", "d"], command = "linemode sizemtime" },
+
+  { keys = ["b", "a"], command = "add_bookmark" },
+  { keys = ["b", "b"], command = "cd_bookmark" },
 
   { keys = ["g", "r"], command = "cd /" },
   { keys = ["g", "c"], command = "cd ~/.config" },
