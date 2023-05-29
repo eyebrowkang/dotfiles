@@ -30,6 +30,8 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+# node_modules
+export PATH="./node_modules/.bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -70,6 +72,7 @@ alias vim="nvim"
 alias lg="lazygit"
 alias fm="joshuto"
 alias gnpm="$HOMEBREW_PREFIX/bin/pnpm"
+alias codi="code-insiders"
 alias fork="open -a Fork.app"
 alias typora="open -a typora"
 alias ws="webstorm"
