@@ -55,19 +55,40 @@ if command -v bat >/dev/null 2>&1; then
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 # = fzf =
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="
---layout=reverse
---height 80%
---border
---preview 'bat {}'
---bind 'ctrl-/:change-preview-window(hidden|),ctrl-y:preview-half-page-up,ctrl-e:preview-half-page-down,ctrl-f:page-down,ctrl-b:page-up'
+--height=60%
+--reverse
+--cycle
+--color=dark
+--color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
+--color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7
+--bind 'ctrl-/:change-preview-window(down|hidden|),ctrl-y:preview-half-page-up,ctrl-e:preview-half-page-down,ctrl-f:page-down,ctrl-b:page-up'
 "
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
+export FZF_COMPLETION_TRIGGER='**'
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'exa -aT -I .git --icons -L 2 {} | head -200'   "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview 'bat {}'                   "$@" ;;
+  esac
+}
 
 # == alias ==
-alias ea="exa -laHT -I .git --icons"
+alias ea="exa -laHT -I .git --git-ignore --icons"
 alias vim="nvim"
 alias lg="lazygit"
 alias fm="joshuto"
@@ -78,13 +99,10 @@ alias typora="open -a typora"
 alias ws="webstorm"
 eval "$(github-copilot-cli alias -- "$0")"
 
-# == external script ==
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # == zsh completion ==
 if command -v colima >/dev/null 2>&1; then
-  source <(colima completion zsh)
+    source <(colima completion zsh)
 fi
 if command -v ng >/dev/null 2>&1; then
-  source <(ng completion script)
+    source <(ng completion script)
 fi
