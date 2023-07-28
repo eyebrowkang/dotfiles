@@ -78,6 +78,10 @@ macosx_install() {
     if command_exists zsh; then
         link_file ""$(pwd)"/macos/zshrc" "$HOME/.zshrc"
     fi
+    # ideavim
+    if command_exists webstorm; then
+        link_file ""$(pwd)"/macos/ideavimrc" "$HOME/.ideavimrc"
+    fi
 }
 
 common_install() {

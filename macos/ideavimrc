@@ -1,0 +1,69 @@
+" ===== idea only ===== {{{
+set ideajoin
+" }}}
+set number
+set relativenumber
+set scrolloff=5
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+set showmode
+set showcmd
+
+" ===== Basic Mappings ===== {{{
+noremap n h
+noremap u k
+noremap e j
+noremap i l
+noremap N ^
+noremap I g_
+
+noremap h nzz
+noremap j e
+noremap k i
+noremap l u
+noremap K I
+noremap H Nzz
+" U/E keys for 5 times u/e (faster navigation)
+noremap U 5k
+noremap E 5j
+
+noremap S :w<cr>
+noremap Q :q<cr>
+
+noremap <CR> ciw
+
+" Copy to system clipboard
+vnoremap Y "+y
+" }}}
+
+" ===== Key Combinaitons ===== {{{
+inoremap <c-a> <esc>I
+inoremap <c-e> <esc>A
+nnoremap <c-l> :nohlsearch<CR>
+" }}}
+
+let g:mapleader=" "
+
+" ===== Window Management ===== {{{
+map <leader>u <C-w>k
+map <leader>e <C-w>j
+map <leader>n <C-w>h
+map <leader>i <C-w>l
+" Disabling the default s key
+noremap s <nop>
+" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
+nnoremap <silent> su :split<CR>
+nnoremap <silent> se :split<CR>
+nnoremap <silent> sn :vsplit<CR>
+nnoremap <silent> si :vsplit<CR>
+" }}}
+
+" ===== Tab Management ===== {{{
+" Move around tabs with tn and ti
+nnoremap <silent> tn :tabprevious<CR>
+nnoremap <silent> ti :tabnext<CR>
+" }}}
