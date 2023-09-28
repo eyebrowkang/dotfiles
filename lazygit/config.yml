@@ -160,7 +160,7 @@ keybinding:
     amendLastCommit: "A"
     commitChangesWithEditor: "C"
     nextBlock-alt: "i" # goto the next block / panel
-    ignoreFile: null
+    ignoreFile: "I"
     refreshFiles: "r"
     stashAllChanges: "s"
     viewStashOptions: "S"

@@ -67,3 +67,7 @@ nnoremap <silent> si :vsplit<CR>
 nnoremap <silent> tn :tabprevious<CR>
 nnoremap <silent> ti :tabnext<CR>
 " }}}
+
+" ===== Plugin ===== {{{
+Plug 'machakann/vim-highlightedyank'
+" }}}
