@@ -66,6 +66,10 @@ linux_install() {
     if command_exists alacritty; then
         link_folder ""$(pwd)"/linux/alacritty" "$HOME/.config/alacritty"
     fi
+    # zsh
+    if command_exists zsh; then
+        link_file ""$(pwd)"/linux/zshrc" "$HOME/.zshrc"
+    fi
 }
 
 macosx_install() {
