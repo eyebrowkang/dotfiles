@@ -34,7 +34,7 @@ esac
 # node version manager
 export VOLTA_HOME="$HOME/.volta"
 case ":$PATH:" in
-    *":"$VOLTA_HOME/bin"":"*) ;;
+    *":"$VOLTA_HOME/bin":"*) ;;
     *) export PATH="$VOLTA_HOME/bin:$PATH" ;;
 esac
 # pnpm
