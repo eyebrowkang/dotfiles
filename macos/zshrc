@@ -27,9 +27,6 @@ export PATH="$HOME/go/bin:$PATH"
 # node version manager
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-# pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
 # node_modules
 export PATH="./node_modules/.bin:$PATH"
 
@@ -88,15 +85,8 @@ _fzf_comprun() {
 }
 
 # == alias ==
-alias ea="exa -laHT -I .git --git-ignore --icons"
 alias lg="lazygit"
-alias fm="joshuto"
-alias gnpm="$HOMEBREW_PREFIX/bin/pnpm"
-alias codi="code-insiders"
-alias fork="open -a Fork.app"
-alias typora="open -a typora"
-alias ws="webstorm"
-eval "$(github-copilot-cli alias -- "$0")"
+alias lz="eza --classify --long --tree --color --icons --almost-all --git-ignore --level=1"
 
 # == zsh completion ==
 if command -v colima >/dev/null 2>&1; then
@@ -120,3 +110,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# commands installed by pnpm
+type github-copilot-cli > /dev/null 2>&1 && eval "$(github-copilot-cli alias -- "$0")"
