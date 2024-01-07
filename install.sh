@@ -62,6 +62,10 @@ link_file() {
 
 linux_install() {
     echo -e "\033[34mInstalling Linux config...\033[0m"
+    # i3wm
+    if command_exists i3; then
+        link_folder ""$(pwd)"/linux/i3" "$HOME/.config/i3"
+    fi
     # alacritty
     if command_exists alacritty; then
         link_folder ""$(pwd)"/linux/alacritty" "$HOME/.config/alacritty"
