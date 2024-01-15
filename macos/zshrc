@@ -1,4 +1,9 @@
 # === PATH SETTINGS ===
+# protobuf
+case ":${PATH}:" in
+    *:"/usr/local/opt/protobuf@3/bin":*) ;;
+    *) export PATH="/usr/local/opt/protobuf@3/bin:$PATH" ;;
+esac
 # my local bin
 case ":${PATH}:" in
     *:"$HOME/.local/bin":*) ;;
@@ -26,11 +31,8 @@ case ":${PATH}:" in
     *) export PATH="$HOME/go/bin:$PATH" ;;
 esac
 # node version manager
-export VOLTA_HOME="$HOME/.volta"
-case ":$PATH:" in
-    *":"$VOLTA_HOME/bin":"*) ;;
-    *) export PATH="$VOLTA_HOME/bin:$PATH" ;;
-esac
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
