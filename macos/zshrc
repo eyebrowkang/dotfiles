@@ -2,7 +2,7 @@
 # protobuf
 case ":${PATH}:" in
     *:"/usr/local/opt/protobuf@3/bin":*) ;;
-    *) export PATH="/usr/local/opt/protobuf@3/bin:$PATH" ;;
+    *) export PATH="$(brew --prefix)/opt/protobuf@3/bin:$PATH" ;;
 esac
 # my local bin
 case ":${PATH}:" in
@@ -38,12 +38,6 @@ export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
     *":$PNPM_HOME:"*) ;;
     *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# bun
-export BUN_INSTALL="$HOME/.bun"
-case ":$PATH:" in
-    *":"$BUN_INSTALL/bin":"*) ;;
-    *) export PATH="$BUN_INSTALL/bin:$PATH" ;;
 esac
 # node_modules
 case ":${PATH}:" in
@@ -111,6 +105,7 @@ _fzf_comprun() {
     *)            fzf --preview 'bat {}'                   "$@" ;;
   esac
 }
+
 # github copilot cli
 type github-copilot-cli > /dev/null 2>&1 && eval "$(github-copilot-cli alias -- "$0")"
 
@@ -120,14 +115,6 @@ alias icat="kitten icat"
 alias lz="eza --classify --long --tree --color --icons --almost-all --level=1"
 
 # === zsh completion ===
-if command -v colima >/dev/null 2>&1; then
-    source <(colima completion zsh)
-fi
-
-if command -v ng >/dev/null 2>&1; then
-    source <(ng completion script)
-fi
-
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -135,5 +122,4 @@ then
   autoload -Uz compinit
   compinit
 fi
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
