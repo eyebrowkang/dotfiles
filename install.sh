@@ -66,10 +66,6 @@ linux_install() {
     if command_exists i3; then
         link_folder ""$(pwd)"/linux/i3" "$HOME/.config/i3"
     fi
-    # alacritty
-    if command_exists alacritty; then
-        link_folder ""$(pwd)"/linux/alacritty" "$HOME/.config/alacritty"
-    fi
     # zsh
     if command_exists zsh; then
         link_file ""$(pwd)"/linux/zshrc" "$HOME/.zshrc"
@@ -78,17 +74,9 @@ linux_install() {
 
 macosx_install() {
     echo -e "\033[34mInstalling macOS config...\033[0m"
-    # alacritty
-    if command_exists alacritty; then
-        link_folder ""$(pwd)"/macos/alacritty" "$HOME/.config/alacritty"
-    fi
     # zsh
     if command_exists zsh; then
         link_file ""$(pwd)"/macos/zshrc" "$HOME/.zshrc"
-    fi
-    # ideavim
-    if command_exists webstorm; then
-        link_file ""$(pwd)"/macos/ideavimrc" "$HOME/.ideavimrc"
     fi
 }
 
@@ -110,9 +98,13 @@ common_install() {
     if command_exists kitty; then
         link_folder ""$(pwd)"/kitty" "$HOME/.config/kitty"
     fi
-    # joshuto
-    if command_exists joshuto; then
-        link_folder ""$(pwd)"/joshuto" "$HOME/.config/joshuto"
+    # alacritty
+    if command_exists alacritty; then
+        link_folder ""$(pwd)"/alacritty" "$HOME/.config/alacritty"
+    fi
+    # ideavim
+    if command_exists webstorm; then
+        link_file ""$(pwd)"/ideavimrc" "$HOME/.ideavimrc"
     fi
 }
 
