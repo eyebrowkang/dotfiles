@@ -102,6 +102,10 @@ common_install() {
     if command_exists alacritty; then
         link_folder ""$(pwd)"/alacritty" "$HOME/.config/alacritty"
     fi
+    # lf
+    if command_exists lf; then
+        link_folder ""$(pwd)"/lf" "$HOME/.config/lf"
+    fi
     # ideavim
     if command_exists webstorm; then
         link_file ""$(pwd)"/ideavimrc" "$HOME/.ideavimrc"
