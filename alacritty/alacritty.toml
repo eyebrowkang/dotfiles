@@ -4,6 +4,7 @@ dynamic_padding = true
 decorations = "None"
 startup_mode = "Maximized"
 option_as_alt = "OnlyLeft"
+# opacity = 0.96
 
 [font]
 size = 16

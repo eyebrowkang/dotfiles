@@ -1,73 +1,107 @@
-" ===== idea only ===== {{{
+" JetbrainsOnly: {{{
 set ideajoin
 " }}}
+" Options: {{{
+" <<< Indentation >>>
+set autoindent
+set expandtab
+set smarttab
+set shiftround
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+" <<< Display >>>
+set background=dark
+set termguicolors
+set cursorcolumn
+set cursorline
+set display=lastline,uhex
 set number
 set relativenumber
 set scrolloff=5
-
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-
-set showmode
+set sidescroll=1
+set sidescrolloff=5
+set smoothscroll
+set list
+set listchars=tab:▸\ ,trail:▫,nbsp:␣,precedes:«,extends:» " eol:⏎
 set showcmd
-
-" ===== Basic Mappings ===== {{{
+set showmode
+set showmatch
+set matchtime=1
+set nowrap
+set wildmenu
+set wildignore=*.o,*.obj,*.swp,*/node_modules/*
+set laststatus=2
+set statusline=
+set statusline+=\>\
+set statusline+=[%n] " Buffer number
+set statusline+=%m " Modified flag
+set statusline+=%q " [Quickfix List], [Location List] or empty.
+set statusline+=\ %f\  " Path to the file in the buffer
+set statusline+=%y " filetype
+set statusline+=%= " seperation
+set statusline+=Ln\ %l,Col\ %c,Tot\ %L(%p%%) " line number, column, total, percent
+set statusline+=\ < " end
+" <<< Search >>>
+set hlsearch
+set ignorecase
+set incsearch
+set smartcase
+" <<< Others >>>
+set autoread
+set backspace=indent,eol,start
+set encoding=utf-8
+set foldlevel=99
+set foldmethod=marker
+set history=200
+set langnoremap
+set nolangremap
+set mouse=nvi
+set ruler
+set nostartofline
+set ttimeoutlen=100
+" }}}
+" Keymap: {{{
+" <<< Arrow Keys >>>
 noremap n h
 noremap u k
 noremap e j
 noremap i l
-noremap N ^
-noremap I g_
 
+noremap L H
+noremap N M
+noremap M L
 noremap h nzz
-noremap j e
-noremap k i
-noremap l u
-noremap K I
 noremap H Nzz
-" U/E keys for 5 times u/e (faster navigation)
-noremap U 5k
-noremap E 5j
-
-noremap S :w<cr>
-noremap Q :q<cr>
-
-noremap <CR> ciw
+noremap U K
+noremap k i
+noremap K I
+" noremap E J
+noremap j e
+" noremap J E
+noremap I U
+noremap l u
 
 " Copy to system clipboard
 vnoremap Y "+y
-" }}}
 
-" ===== Key Combinaitons ===== {{{
-inoremap <c-a> <esc>I
-inoremap <c-e> <esc>A
-nnoremap <c-l> :nohlsearch<CR>
-" }}}
+noremap <CR> ciw
+inoremap <C-A> <Esc>I
+inoremap <C-E> <Esc>A
+nnoremap <C-L> :nohlsearch<CR><C-L>
+
+" <<< Window Management >>>
+" map <C-W>u <C-W>k
+" map <C-W>e <C-W>j
+" map <C-W>n <C-W>h
+" map <C-W>i <C-W>l
+map <C-W><C-U> <C-W>k
+map <C-W><C-E> <C-W>j
+map <C-W><C-N> <C-W>h
+map <C-W><C-I> <C-W>l
 
 let g:mapleader=" "
-
-" ===== Window Management ===== {{{
-map <leader>u <C-w>k
-map <leader>e <C-w>j
-map <leader>n <C-w>h
-map <leader>i <C-w>l
-" Disabling the default s key
-noremap s <nop>
-" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-nnoremap <silent> su :split<CR>
-nnoremap <silent> se :split<CR>
-nnoremap <silent> sn :vsplit<CR>
-nnoremap <silent> si :vsplit<CR>
 " }}}
-
-" ===== Tab Management ===== {{{
-" Move around tabs with tn and ti
-nnoremap <silent> tn :tabprevious<CR>
-nnoremap <silent> ti :tabnext<CR>
-" }}}
-
-" ===== Plugin ===== {{{
+" Plugin: {{{
 Plug 'machakann/vim-highlightedyank'
 " }}}
