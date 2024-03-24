@@ -208,3 +208,5 @@ keybinding:
     markCommitAsFixup: "f"
     createFixupCommit: "F" # create fixup commit for this commit
     squashAboveCommits: "S"
+    startInteractiveRebase: "t"
+    revertCommit: "v"
