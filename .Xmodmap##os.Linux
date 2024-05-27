@@ -1,0 +1,11 @@
+! Swap Caps_Lock and Control_L
+remove Lock = Caps_Lock
+remove Control = Control_L
+keysym Caps_Lock = Control_L
+keysym Control_L = Caps_Lock
+add Lock = Caps_Lock
+add Control = Control_L
+
+! Swap backslash and BackSpace
+keysym BackSpace = backslash
+keysym backslash = BackSpace
