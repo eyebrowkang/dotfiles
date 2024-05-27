@@ -1,10 +1,4 @@
 # === PATH SETTINGS ===
-# protobuf
-case ":${PATH}:" in
-    *:"/usr/local/opt/protobuf@3/bin":*) ;;
-    *) export PATH="$(brew --prefix)/opt/protobuf@3/bin:$PATH" ;;
-esac
-# my local bin
 case ":${PATH}:" in
     *:"$HOME/.local/bin":*) ;;
     *) export PATH="$HOME/.local/bin:$PATH" ;;
