@@ -1,0 +1,54 @@
+gui:
+  # The number of lines you scroll by when scrolling the main window
+  scrollHeight: 10
+  # Fraction of the total screen width to use for the left side section. You may want to pick a small number (e.g. 0.2) if you're using a narrow screen, so that you can see more of the main section.
+  # Number from 0 to 1.0.
+  sidePanelWidth: 0.25
+  # One of 'auto' (default) | 'en' | 'zh-CN' | 'zh-TW' | 'pl' | 'nl' | 'ja' | 'ko' | 'ru'
+  language: "en"
+  # Nerd fonts version to use.
+  # One of: '2' | '3' | empty string (default)
+  # If empty, do not show icons.
+  nerdFontsVersion: "3"
+  # How things are filtered when typing '/'.
+  # One of 'substring' (default) | 'fuzzy'
+  filterMode: "fuzzy"
+
+# Config relating to git
+git:
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
+  paging:
+    # Value of the --color arg in the git diff command. Some pagers want this to be set to 'always' and some want it set to 'never'
+    colorArg: always
+    # e.g.
+    # diff-so-fancy
+    # delta --dark --paging=never
+    # ydiff -p cat -s --wrap --width={{columnWidth}}
+    pager: ""
+    # e.g. 'difft --color=always'
+    externalDiffCommand: ""
+  # list of branches that are considered 'main' branches, used when displaying commits
+  mainBranches:
+    - master
+    - main
+  # Prefix to use when skipping hooks. E.g. if set to 'WIP', then pre-commit hooks will be skipped when the commit message starts with 'WIP'
+  skipHookPrefix: WIP
+  # If true, periodically fetch from remote
+  autoFetch: false
+  # Config for showing the log in the commits view
+  log:
+    # One of: 'date-order' | 'author-date-order' | 'topo-order' | 'default'
+    # 'topo-order' makes it easier to read the git log graph, but commits may not
+    # appear chronologically. See https://git-scm.com/docs/
+    #
+    # Deprecated: Configure this with `Log menu -> Commit sort order` (<c-l> in the commits window by default).
+    order: topo-order
+
+    # This determines whether the git graph is rendered in the commits panel
+    # One of 'always' | 'never' | 'when-maximised'
+    #
+    # Deprecated: Configure this with `Log menu -> Show git graph` (<c-l> in the commits window by default).
+    showGraph: "when-maximised"
+  # When copying commit hashes to the clipboard, truncate them to this
+  # length. Set to 40 to disable truncation.
+  truncateCopiedCommitHashesTo: 12
