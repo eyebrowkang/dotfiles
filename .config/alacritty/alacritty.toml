@@ -1,0 +1,73 @@
+[window]
+padding = { x = 3, y = 3 }
+dynamic_padding = true
+decorations = "None"
+startup_mode = "Maximized"
+option_as_alt = "OnlyLeft"
+# opacity = 0.96
+
+[font]
+size = 16
+normal = { family = "Liga SFMono Nerd Font", style = "Regular" }
+# Liga SFMono Nerd Font only
+bold = { style = "SemiBold" }
+bold_italic = { style = "SemiBold Italic" }
+
+[selection]
+save_to_clipboard = true
+
+[keyboard]
+bindings = [
+{ key = "|", mods = "Control|Shift", action = "ToggleViMode" },
+{ key = "U", mode = "Vi|~Search", action = "Up" },
+{ key = "E", mode = "Vi|~Search", action = "Down" },
+{ key = "N", mode = "Vi|~Search", action = "Left" },
+{ key = "I", mode = "Vi|~Search", action = "Right" },
+{ key = "K", mode = "Vi|~Search", action = "ToggleViMode" },
+{ key = "J", mode = "Vi|~Search", action = "SemanticRightEnd" },
+{ key = "J", mods = "Shift", mode = "Vi|~Search", action = "WordRightEnd" },
+{ key = "H", mode = "Vi|~Search", action = "SearchNext" },
+{ key = "H", mods = "Shift", mode = "Vi|~Search", action = "SearchPrevious" },
+]
+
+# TokyoNight Alacritty Colors
+# Default colors
+[colors.primary]
+background = '#222436'
+foreground = '#c8d3f5'
+
+#[colors.cursor]
+#cursor = '#c8d3f5'
+#text = '#222436'
+
+# Normal colors
+[colors.normal]
+black = '#1b1d2b'
+red = '#ff757f'
+green = '#c3e88d'
+yellow = '#ffc777'
+blue = '#82aaff'
+magenta = '#c099ff'
+cyan = '#86e1fc'
+white = '#828bb8'
+
+# Bright colors
+[colors.bright]
+black = '#444a73'
+red = '#ff757f'
+green = '#c3e88d'
+yellow = '#ffc777'
+blue = '#82aaff'
+magenta = '#c099ff'
+cyan = '#86e1fc'
+white = '#c8d3f5'
+
+# Indexed Colors
+[[colors.indexed_colors]]
+index = 16
+color = '#ff966c'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#c53b53'
+
