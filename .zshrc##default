@@ -26,6 +26,7 @@ plugins=(
     zsh-autosuggestions
 )
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+[[ -n "$HOMEBREW_PREFIX" ]] && FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:${FPATH}"
 source $ZSH/oh-my-zsh.sh
 
 # ==============================

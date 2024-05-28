@@ -1,6 +1,5 @@
 # This file only execute for login shell
 system_type=$(uname -s)
-system_arch=$(uname -m)
 
 have_command() {
     if command -v "$1" >/dev/null 2>&1; then
@@ -10,15 +9,17 @@ have_command() {
     fi
 }
 
-if [ "$system_type" = "Darwin" ]; then
+if [[ "$system_type" = "Darwin" ]]; then
     # +==+ HomeBrew Start +==+
-    brew_path=$(which brew 2>/dev/null)
-
-    if [ -n "$brew_path" ]; then
-        # Set PATH, MANPATH, etc., for Homebrew.
-        eval "$($brew_path shellenv)"
-        export PATH="$HOMEBREW_PREFIX/opt/protobuf@3/bin:$PATH"
+    if [[ -x "/opt/homebrew/bin/brew" ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    else
+        if [[ -x "/usr/local/bin/brew" ]]; then
+            eval "$(/usr/local/bin/brew shellenv)"
+        fi
     fi
+
+    export PATH="$HOMEBREW_PREFIX/opt/protobuf@3/bin:$PATH"
     # +==+ HomeBrew End +==+
 
     if have_command bat; then
