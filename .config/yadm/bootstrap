@@ -6,6 +6,10 @@
 
 set -eu
 
+export local_class=$(yadm config local.class)
+export system_type=$(uname -s)
+export system_arch=$(uname -m)
+
 # Directory to look for bootstrap executables in
 BOOTSTRAP_D="${BASH_SOURCE[0]}.d"
 

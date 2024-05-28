@@ -20,7 +20,7 @@ yadm bootstrap
 ### Debian or Ubuntu
 ```bash
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y yadm
+sudo apt install -y yadm curl git
 yadm clone https://github.com/eyebrowkang/dotfiles.git --no-bootstrap
 yadm config local.class server
 yadm bootstrap

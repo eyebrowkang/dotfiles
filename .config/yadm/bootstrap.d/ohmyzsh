@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# requirements
+# curl
+# git
+# zsh
+if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+    echo "=== installing oh my zsh ==="
+
+    zsh_custom_dir=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}
+
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended && \
+    git clone https://github.com/zsh-users/zsh-autosuggestions $zsh_custom_dir/plugins/zsh-autosuggestions && \
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting $zsh_custom_dir/plugins/zsh-syntax-highlighting && \
+    git clone https://github.com/zsh-users/zsh-completions $zsh_custom_dir/plugins/zsh-completions
+    if [[ "$local_class" != "server" ]]; then
+        mkdir -p $zsh_custom_dir/themes
+        curl -o "$zsh_custom_dir/themes/pi.zsh-theme" https://raw.githubusercontent.com/tobyjamesthomas/pi/master/pi.zsh-theme
+    fi
+fi
+
