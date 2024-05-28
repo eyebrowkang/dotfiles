@@ -1,6 +1,19 @@
 #!/bin/bash
 
+have_command() {
+    if command -v "$1" >/dev/null 2>&1; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 install_lf() {
+    if have_command lf; then
+        echo "lf has installed"
+        return 0
+    fi
+
     case "$system_arch" in
         i386|i686)
             file_arch="386"

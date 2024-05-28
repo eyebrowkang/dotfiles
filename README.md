@@ -24,5 +24,6 @@ sudo apt install -y yadm curl git
 yadm clone https://github.com/eyebrowkang/dotfiles.git --no-bootstrap
 yadm config local.class server
 yadm bootstrap
+chsh -s "$(which zsh)"
 ```
 
