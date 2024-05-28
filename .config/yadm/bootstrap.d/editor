@@ -1,0 +1,12 @@
+#!/bin/bash
+
+local_class="$(yadm config local.class)"
+
+if [[ ! -d "$HOME/.vim" ]]; then
+    echo "Cloning .vim"
+    git clone https://github.com/eyebrowkang/.vim.git "$HOME/.vim"
+fi
+if [[ ! -d "$HOME/.config/nvim" && "$local_class" != "server" ]]; then
+    echo "Cloning nvim"
+    git clone https://github.com/eyebrowkang/nvim.git "$HOME/.config/nvim"
+fi

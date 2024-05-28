@@ -1,11 +1,18 @@
-export EDITOR='vim'
-export GPG_TTY=$(tty)
+# ==============================
+#            PATH
+# ==============================
+case ":${PATH}:" in
+    *:"$HOME/.local/bin":*) ;;
+    *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+case ":${PATH}:" in
+    *:"./node_modules/.bin":*) ;;
+    *) export PATH="./node_modules/.bin:$PATH" ;;
+esac
 
-alias lg="lazygit"
-alias icat="kitten icat"
-alias lz="eza --classify --long --tree --color --icons --almost-all --level=1"
-
-# === OH MY ZSH ===
+# ==============================
+#          oh my zsh
+# ==============================
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="pi"
 unsetopt autocd
@@ -21,7 +28,20 @@ plugins=(
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
-# fzf
+# ==============================
+#         env and alias
+# ==============================
+export EDITOR='vim'
+export GPG_TTY=$(tty)
+
+alias lg="lazygit"
+alias icat="kitten icat"
+alias lz="eza --classify --long --tree --color --icons --almost-all --level=1"
+
+
+# ==============================
+#            fzf
+# ==============================
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="
 --height=60%
@@ -54,11 +74,3 @@ _fzf_comprun() {
   esac
 }
 
-case ":${PATH}:" in
-    *:"$HOME/.local/bin":*) ;;
-    *) export PATH="$HOME/.local/bin:$PATH" ;;
-esac
-case ":${PATH}:" in
-    *:"./node_modules/.bin":*) ;;
-    *) export PATH="./node_modules/.bin:$PATH" ;;
-esac
