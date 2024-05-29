@@ -18,9 +18,13 @@ yadm bootstrap
 ## Linux
 
 ### Debian or Ubuntu
+
+**change password first when using aws, azure, etc.**
 ```bash
-# change password first when using aws, azure, etc.
-# sudo passwd user
+sudo passwd user
+```
+
+```bash
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y yadm curl git
 echo "=== yadm init start ==="
@@ -30,5 +34,6 @@ yadm bootstrap
 echo "=== yadm init ok ==="
 chsh -s "$(which zsh)"
 yadm alt
+rm .zshrc.pre-oh-my-zsh
 ```
 
