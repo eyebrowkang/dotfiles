@@ -46,7 +46,43 @@ install_lf() {
         return 1
     fi
 
-    echo "Installed successfully"
+    echo "lf Installed successfully"
+    return 0
+}
+
+install_fastfetch() {
+    if have_command fastfetch; then
+        echo "fastfetch has installed"
+        return 0
+    fi
+
+    case "$system_arch" in
+        x86_64)
+            file_arch="amd64"
+            ;;
+        aarch64|arm64)
+            file_arch="aarch64"
+            ;;
+        *)
+            echo "arch not support, fastfetch install aborted"
+            return 1
+            ;;
+    esac
+
+    url="https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-${file_arch}.deb"
+    output_file="/tmp/fastfetch-linux-${file_arch}.deb"
+
+    if ! curl -L -o "$output_file" "$url"; then
+        echo "Download failed, fastfetch install aborted"
+        return 1
+    fi
+
+    if ! sudo dpkg -i "$output_file"; then
+        echo "Installation failed, fastfetch install aborted"
+        return 1
+    fi
+
+    echo "fastfetch Installed successfully"
     return 0
 }
 
@@ -56,6 +92,7 @@ if [[ "$system_type" == "Darwin" ]]; then
 fi
 
 if [[ "$local_class" == "server" ]]; then
-    sudo apt install -y zsh tmux tar vim zip unzip
+    sudo apt install -y zsh tmux tar vim zip unzip htop
     install_lf
+    install_fastfetch
 fi
