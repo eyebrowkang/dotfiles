@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# ============================================================
+# Function: 安装docker
+# Source: https://docs.docker.com/engine/install/debian
+# ============================================================
+
 # uninstall docker
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt-get remove $pkg; done
 # Add Docker's official GPG key:
