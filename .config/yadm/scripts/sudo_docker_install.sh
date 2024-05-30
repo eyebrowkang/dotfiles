@@ -5,6 +5,8 @@
 # Source: https://docs.docker.com/engine/install/debian
 # ============================================================
 
+ORIGINAL_USER=$1
+
 # uninstall docker
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt-get remove $pkg; done
 # Add Docker's official GPG key:
@@ -21,5 +23,7 @@ echo \
 apt-get update
 apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 # add user to docker group
-# groupadd docker
-usermod -aG docker $USER
+if [[ -n "$ORIGINAL_USER" ]]; then
+    usermod -aG docker $ORIGINAL_USER
+    echo "user $ORIGINAL_USER haved added to group docker"
+fi
