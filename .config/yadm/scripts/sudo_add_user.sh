@@ -6,7 +6,9 @@
 
 # 设置用户名密码
 read -p "请输入用户名：" USERNAME
+echo
 read -p -s "请输入 $USERNAME 的密码：" PASSWORD
+echo
 read -p -s "请再次输入密码：" PASSWORD_CONFIRM
 
 # 检查两次输入的密码是否一致
@@ -16,10 +18,10 @@ if [[ "$PASSWORD" != "$PASSWORD_CONFIRM" ]]; then
 fi
 
 # 创建用户并设置密码
-useradd -m "$USERNAME"
+useradd -m -s /bin/bash "$USERNAME"
 echo "$USERNAME:$PASSWORD" | chpasswd
 
 # 将用户添加到sudo组
 usermod -aG sudo "$USERNAME"
 
-echo "用户 $USERNAME 创建成功，并已赋予sudo权限"
+echo "用户 $USERNAME 创建成功"
