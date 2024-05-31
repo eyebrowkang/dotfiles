@@ -34,6 +34,8 @@ source $ZSH/oh-my-zsh.sh
 # ==============================
 export EDITOR='vim'
 export GPG_TTY=$(tty)
+# https://unix.stackexchange.com/questions/9665/create-tar-archive-of-a-directory-except-for-hidden-files
+export COPYFILE_DISABLE=1
 
 alias lg="lazygit"
 alias icat="kitten icat"
