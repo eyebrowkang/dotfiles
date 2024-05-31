@@ -56,9 +56,6 @@ if [[ -d "$HOME/miniconda3" ]]; then
     # <<< conda initialize <<<
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -d "$NVM_DIR" ] && [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-
 if have_command pnpm; then
     export PNPM_HOME="$HOME/.local/share/pnpm"
     mkdir -p $PNPM_HOME;

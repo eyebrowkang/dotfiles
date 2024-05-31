@@ -1,6 +1,9 @@
 # ==============================
 #            PATH
 # ==============================
+export NVM_DIR="$HOME/.nvm"
+[ -d "$NVM_DIR" ] && [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+
 case ":${PATH}:" in
     *:"$HOME/.local/bin":*) ;;
     *) export PATH="$HOME/.local/bin:$PATH" ;;
