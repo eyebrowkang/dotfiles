@@ -50,6 +50,7 @@ if [[ "$system_type" == "Darwin" ]]; then
 fi
 
 if [[ "$local_class" == "server" ]]; then
-    sudo apt install -y zsh tmux vim tar bzip2 zip unzip htop lf ufw fail2ban acl rclone restic
+    sudo apt update
+    sudo apt install -y zsh tmux vim gpg tar bzip2 zip unzip htop lf ufw fail2ban acl rclone restic
     install_fastfetch
 fi
