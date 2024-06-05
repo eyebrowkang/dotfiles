@@ -52,6 +52,8 @@ if [[ -n "$BACKUP_SCRIPT_URL" ]]; then
 
     chmod 700 $BACKUP_SCRIPT_PATH
 
+    echo "请修改 $BACKUP_SCRIPT_PATH 中的 CUSTOM_REPO_PATH 变量为 $CUSTOM_REPO_PATH"
+
     echo "添加以下cron job启用每日备份"
     echo "30 3 * * * $BACKUP_SCRIPT_PATH daily"
     echo "添加以下cron job启用每周备份"
