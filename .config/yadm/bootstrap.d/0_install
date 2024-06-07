@@ -44,6 +44,47 @@ install_fastfetch() {
     return 0
 }
 
+install_lf() {
+    if have_command lf; then
+        echo "lf has installed"
+        return 0
+    fi
+
+    case "$system_arch" in
+        i386|i686)
+            file_arch="386"
+            ;;
+        x86_64)
+            file_arch="amd64"
+            ;;
+        armv7*|armv6*|armv5*)
+            file_arch="arm"
+            ;;
+        aarch64|arm64)
+            file_arch="arm64"
+            ;;
+        *)
+            echo "arch not support, lf install aborted"
+            return 1
+            ;;
+    esac
+
+    url="https://github.com/gokcehan/lf/releases/latest/download/lf-linux-${file_arch}.tar.gz"
+    output_file="/tmp/lf-linux-${file_arch}.tar.gz"
+
+    if ! curl -L -o "$output_file" "$url"; then
+        echo "Download failed, lf install aborted"
+        return 1
+    fi
+
+    if ! sudo tar -xzf "$output_file" -C /usr/local/bin; then
+        echo "Extraction failed, lf install aborted"
+        return 1
+    fi
+
+    echo "lf Installed successfully"
+    return 0
+}
 
 if [[ "$system_type" == "Darwin" ]]; then
     brew bundle --file=~/.config/yadm/Brewfile --no-lock
@@ -51,8 +92,9 @@ fi
 
 if [[ "$local_class" == "server" ]]; then
     sudo apt update
-    for package in zsh tmux vim gpg tar bzip2 zip unzip htop lf ufw fail2ban rclone restic; do
+    for package in zsh tmux vim gpg tar bzip2 zip unzip htop lf ufw fail2ban rclone restic cron logrotate; do
         sudo apt install -y $package || echo -e "\e[31mFailed to install $package\e[0m"
     done
     install_fastfetch
+    install_lf
 fi
