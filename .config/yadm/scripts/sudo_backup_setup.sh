@@ -65,6 +65,7 @@ fi
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 mkdir -p $BACKUP_DIR
 cp "$SCRIPT_DIR/docker_volume_backup_restore.sh" "$BACKUP_DIR"
+chmod 700 "$BACKUP_DIR/docker_volume_backup_restore.sh"
 echo "# 添加以下cron job启用docker volume 每日备份"
 echo "0 3 * * * $BACKUP_DIR/docker_volume_backup_restore.sh backup volume_name"
 
