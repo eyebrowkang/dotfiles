@@ -37,3 +37,7 @@ yadm alt
 rm .zshrc.pre-oh-my-zsh
 ```
 
+#### development server
+```bash
+yadm config local.class development
+```

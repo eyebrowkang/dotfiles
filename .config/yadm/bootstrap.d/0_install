@@ -90,7 +90,7 @@ if [[ "$system_type" == "Darwin" ]]; then
     brew bundle --file=~/.config/yadm/Brewfile --no-lock
 fi
 
-if [[ "$local_class" == "server" ]]; then
+if is_debian; then
     sudo apt update
     for package in zsh tmux vim gpg tar bzip2 zip unzip htop lf ufw fail2ban rclone restic cron logrotate; do
         sudo apt install -y $package || echo -e "\e[31mFailed to install $package\e[0m"

@@ -6,6 +6,16 @@
 
 set -eu
 
+is_debian() {
+  if [[ -f /etc/os-release ]]; then
+    if grep -q '^ID=debian' /etc/os-release; then
+      return 0
+    fi
+  fi
+  return 1
+}
+
+export -f is_debian
 export local_class=$(yadm config local.class)
 export system_type=$(uname -s)
 export system_arch=$(uname -m)
