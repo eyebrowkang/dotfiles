@@ -2,7 +2,18 @@
 
 ## MacOS
 
-install [xcode](https://developer.apple.com/xcode/resources)
+1. install Bitwarden by App Store for biometrics integration
+
+2. install [xcode](https://developer.apple.com/xcode/resources) from web not App Store
+
+3. Other Apps from App Store
+    - Developer
+    - TestFlight
+    - Xnip
+    - Windows App
+    - WireGuard
+
+4. run the script
 
 ```bash
 # install HomeBrew
