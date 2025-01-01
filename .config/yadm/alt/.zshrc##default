@@ -26,7 +26,8 @@ if [[ -d "$HOME/miniconda3" ]]; then
     # <<< conda initialize <<<
 fi
 
-export NVM_DIR="$HOME/.nvm"
+[ -d "$HOME/.nvm" ] && export NVM_DIR="$HOME/.nvm"
+[ -d "$HOME/.config/nvm" ] && export NVM_DIR="$HOME/.config/nvm"
 [ -d "$NVM_DIR" ] && [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
 case ":${PATH}:" in
